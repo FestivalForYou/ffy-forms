@@ -1,0 +1,11 @@
+{
+  "name": "ffy-forms",
+  "version": "0.0.1",
+  "description": "React based forms created from JSON objects",
+  "main": "form.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Phil Wiltsher",
+  "license": "GPL-3.0"
+}
