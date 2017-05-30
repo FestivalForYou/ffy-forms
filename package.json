@@ -2,17 +2,29 @@
   "name": "ffy-forms",
   "version": "0.0.1",
   "description": "React based forms created from JSON objects",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
   },
   "repository": {
-        "type": "git",
-        "url": "https://github.com/FestivalForYou/ffy-forms.git"
-    },
+    "type": "git",
+    "url": "https://github.com/FestivalForYou/ffy-forms.git"
+  },
   "author": "Phil Wiltsher",
   "license": "GPL-3.0",
   "dependencies": {
     "react": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1"
   }
 }
