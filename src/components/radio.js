@@ -4,7 +4,7 @@ export default class Radio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: (this.props.value ? this.props.value : this.props.attributes.options[0])
+      value: (this.props.value ? this.props.value : false)
     }
   }
 
@@ -27,7 +27,7 @@ export default class Radio extends React.Component {
   render() {
     let options = [];
     this.props.attributes.options.forEach((value, index) => {
-      options.push(<div className="radio"><input type="radio" name={this.props.attributes.name} value={value.val} onClick={this.updateField} /> {value.label}</div>);
+      options.push(<div className="radio" key={index}><input type="radio" name={this.props.attributes.name} value={value.val} onClick={this.updateField} /> {value.label}</div>);
     });
     return (
       <fieldset>

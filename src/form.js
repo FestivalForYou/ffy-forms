@@ -2,6 +2,9 @@ import React from 'react';
 import Text from './components/text';
 import Password from './components/password';
 import Select from './components/select';
+import Radio from './components/radio';
+import Checkbox from './components/checkbox';
+import TrueFalse from './components/bool';
 
 export default class Form extends React.Component {
   componentWillMount = () => {
@@ -49,6 +52,9 @@ export default class Form extends React.Component {
           break;
         case 'checkbox':
           fields.push(<Checkbox key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          break;
+        case 'bool':
+          fields.push(<TrueFalse key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
           break;
       }
     });
