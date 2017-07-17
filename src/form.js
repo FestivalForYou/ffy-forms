@@ -44,6 +44,12 @@ export default class Form extends React.Component {
         case 'select':
           fields.push(<Select key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
           break;
+        case 'radio':
+          fields.push(<Radio key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          break;
+        case 'checkbox':
+          fields.push(<Checkbox key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          break;
       }
     });
     return (
