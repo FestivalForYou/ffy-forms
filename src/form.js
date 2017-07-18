@@ -1,6 +1,7 @@
 import React from 'react';
 import Text from './components/text';
 import Password from './components/password';
+import Email from './components/email';
 import Select from './components/select';
 import Radio from './components/radio';
 import Checkbox from './components/checkbox';
@@ -39,10 +40,13 @@ export default class Form extends React.Component {
     this.props.fields.forEach((field, index) => {
       switch(field.type) {
         case 'text':
-          fields.push(<Text key={index} attributes={field} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          fields.push(<Text key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />)
           break;
         case 'password':
-          fields.push(<Password key={index} attributes={field} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          fields.push(<Password key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          break;
+        case 'email':
+          fields.push(<Email key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />)
           break;
         case 'select':
           fields.push(<Select key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
@@ -71,5 +75,6 @@ export default class Form extends React.Component {
 
 Form.defaultProps = {
   realtimeval: false,
-  value: ''
+  value: '',
+  showlabels: true
 }

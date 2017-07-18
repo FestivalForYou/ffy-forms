@@ -16,7 +16,9 @@ export default class Password extends Field {
     }
     return (
       <fieldset>
+      {this.props.labels &&
         <label htmlFor={this.props.attributes.name}>{this.props.attributes.label}</label>
+      }
         <input
           type='password'
           name={this.props.attributes.name}
