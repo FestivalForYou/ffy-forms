@@ -7,6 +7,7 @@ import Radio from './components/radio';
 import Checkbox from './components/checkbox';
 import TrueFalse from './components/bool';
 import Textarea from './components/textarea';
+import Hidden from './components/hidden';
 
 export default class Form extends React.Component {
   componentWillMount = () => {
@@ -63,6 +64,9 @@ export default class Form extends React.Component {
           break;
         case 'textarea':
           fields.push(<Textarea key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          break;
+        case 'hidden':
+          fields.push(<Hidden key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
           break;
       }
     });
