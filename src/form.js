@@ -6,6 +6,7 @@ import Select from './components/select';
 import Radio from './components/radio';
 import Checkbox from './components/checkbox';
 import TrueFalse from './components/bool';
+import Textarea from './components/textarea';
 
 export default class Form extends React.Component {
   componentWillMount = () => {
@@ -59,6 +60,9 @@ export default class Form extends React.Component {
           break;
         case 'bool':
           fields.push(<TrueFalse key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          break;
+        case 'textarea':
+          fields.push(<Textarea key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
           break;
       }
     });
