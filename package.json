@@ -1,6 +1,6 @@
 {
   "name": "ffy-forms",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "React based forms created from JSON objects",
   "main": "lib/index.js",
   "scripts": {
