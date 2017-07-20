@@ -30,7 +30,7 @@ export default class Select extends React.Component {
       options.push(<option key={index}>{value}</option>);
     });
     return (
-      <fieldset>
+      <fieldset className={this.props.attributes.classname}>
         <label htmlFor={this.props.attributes.name}>{this.props.attributes.label}</label>
         <select name={this.props.attributes.name} onChange={this.updateField}>
           {options}

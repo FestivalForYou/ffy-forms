@@ -56,7 +56,7 @@ export default class Field extends React.Component {
 
   render() {
     return (
-      <fieldset>
+      <fieldset className={this.props.attributes.classname}>
 
       </fieldset>
     )

@@ -30,7 +30,7 @@ export default class Radio extends React.Component {
       options.push(<div className="radio" key={index}><input type="radio" name={this.props.attributes.name} value={value.val} onClick={this.updateField} /> {value.label}</div>);
     });
     return (
-      <fieldset>
+      <fieldset className={this.props.attributes.classname}>
         <label htmlFor={this.props.attributes.name}>{this.props.attributes.label}</label>
         {options}
       </fieldset>

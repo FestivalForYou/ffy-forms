@@ -4,7 +4,7 @@ import Field from './field';
 export default class TextArea extends Field {
   render() {
     return (
-      <fieldset className='textarea'>
+      <fieldset className={this.props.attributes.classname}>
         {this.props.labels &&
           <label htmlFor={this.props.attributes.name}>{this.props.attributes.label}</label>
         }

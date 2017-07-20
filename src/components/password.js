@@ -15,7 +15,7 @@ export default class Password extends Field {
       }
     }
     return (
-      <fieldset>
+      <fieldset className={this.props.attributes.classname}>
       {this.props.labels &&
         <label htmlFor={this.props.attributes.name}>{this.props.attributes.label}</label>
       }
