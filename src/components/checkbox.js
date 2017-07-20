@@ -35,11 +35,11 @@ export default class Checkbox extends React.Component {
   render() {
     let options = [];
     this.props.attributes.options.forEach((value, index) => {
-      options.push(<div className="checkbox" key={index}><input type="checkbox" name={this.props.attributes.name + '[]'} value={value.val} onClick={this.updateField} /> {value.label}</div>);
+      options.push(<div className="checkbox" key={index}><input type="checkbox" name={this.props.attributes.name + '[]'} value={value.val} onClick={this.updateField} id={this.props.attributes.name + '_' + index}/> <label htmlFor={this.props.attributes.name + '_' + index}>{value.label}</label></div>);
     });
     return (
       <fieldset className={this.props.attributes.classname}>
-        <label htmlFor={this.props.attributes.name}>{this.props.attributes.label}</label>
+        <p>{this.props.attributes.label}</p>
         {options}
       </fieldset>
     )

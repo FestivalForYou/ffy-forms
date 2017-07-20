@@ -29,7 +29,7 @@ export default class Bool extends React.Component {
     let options = [];
     return (
       <fieldset className={this.props.attributes.classname}>
-        <input type="checkbox" name={this.props.attributes.name} onClick={this.updateField} />
+        <input type="checkbox" name={this.props.attributes.name} onClick={this.updateField} id={this.props.attributes.name} />
         <label htmlFor={this.props.attributes.name}>{this.props.attributes.label}</label>
       </fieldset>
     )
