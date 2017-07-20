@@ -8,6 +8,7 @@ import Checkbox from './components/checkbox';
 import TrueFalse from './components/bool';
 import Textarea from './components/textarea';
 import Hidden from './components/hidden';
+import Info from './components/info';
 
 export default class Form extends React.Component {
   componentWillMount = () => {
@@ -67,6 +68,9 @@ export default class Form extends React.Component {
           break;
         case 'hidden':
           fields.push(<Hidden key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
+          break;
+        case 'info':
+          fields.push(<Info key={index} attributes={field} />)
           break;
       }
     });
