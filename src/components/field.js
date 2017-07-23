@@ -20,17 +20,24 @@ export default class Field extends React.Component {
   }
 
   validateField = () => {
-    if(this.props.attributes.validation) {
+    if(this.props.attributes.required) {
       let valid = true;
-      let validations = this.props.attributes.validation;
-      for(let key of Object.keys(validations)) {
-        switch(key) {
-          case 'equals':
-            let test = validations.equals.var;
-            if(validations.equals.type == 'field') {
-              test = this.props.getFieldValue(validations.equals.var);
-            }
-            this.state.valid = Validate.runTest(key, this.state.value, test);
+      this.state.valid = Validate.runTest('required', this.state.value);
+    }
+    if(this.state.valid) {
+      if(this.props.attributes.validation) {
+        let valid = true;
+        let validations = this.props.attributes.validation;
+        for(let key of Object.keys(validations)) {
+          switch(key) {
+            case 'equals':
+              let test = validations.equals.var;
+              if(validations.equals.type == 'field') {
+                test = this.props.getFieldValue(validations.equals.var);
+              }
+              break;
+          }
+          this.state.valid = Validate.runTest(key, this.state.value, test);
         }
       }
     }
@@ -55,8 +62,12 @@ export default class Field extends React.Component {
   }
 
   render() {
+    let classname = (this.props.attributes.classname ? this.props.attributes.classname : "");
+    if(!this.state.valid) {
+      classname += " error";
+    }
     return (
-      <fieldset className={this.props.attributes.classname}>
+      <fieldset className={classname}>
 
       </fieldset>
     )

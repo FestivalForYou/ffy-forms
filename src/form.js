@@ -14,17 +14,26 @@ export default class Form extends React.Component {
   componentWillMount = () => {
     this.state = {
       fields: {},
-      values: {}
+      values: {},
+      errors: []
     }
   }
 
   submit = (e) => {
     e.preventDefault();
     for(let key of Object.keys(this.state.fields)) {
-      this.state.values[key] = this.state.fields[key].getValue();
+      if(this.state.fields[key].validateField()) {
+        this.state.values[key] = this.state.fields[key].getValue();
+      } else {
+        this.state.errors.push(key);
+      }
     }
 
-    this.props.onSubmit(this.state.values);
+    if(this.state.errors.length == 0) {
+      this.props.onSubmit(this.state.values);
+    } else {
+      this.forceUpdate();
+    }
   }
 
   clearFields = () => {
@@ -76,6 +85,9 @@ export default class Form extends React.Component {
     });
     return (
       <form name={this.props.name} method="POST" action="" onSubmit={this.submit}>
+        {this.state.errors.length > 0 &&
+          <p>{this.props.errormsg}</p>
+        }
         {fields}
         <fieldset>
           <input type="submit" value={this.props.submitbtn} />

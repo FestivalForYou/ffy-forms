@@ -4,7 +4,8 @@ export default class Select extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: (this.props.value ? this.props.value : this.props.attributes.options[0])
+      value: (this.props.value ? this.props.value : this.props.attributes.options[0]),
+      valid: true
     }
   }
 
@@ -16,6 +17,10 @@ export default class Select extends React.Component {
 
   getValue = () => {
     return this.state.value;
+  }
+
+  validateField = () => {
+    return this.state.valid;
   }
 
   clear = () => {
