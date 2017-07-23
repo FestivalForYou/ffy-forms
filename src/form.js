@@ -33,6 +33,9 @@ export default class Form extends React.Component {
       this.props.onSubmit(this.state.values);
     } else {
       this.forceUpdate();
+      this.props.onSubmit({
+        errors: this.state.errors
+      })
     }
   }
 
