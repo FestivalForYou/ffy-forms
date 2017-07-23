@@ -20,6 +20,7 @@ export default class Form extends React.Component {
   }
 
   submit = (e) => {
+    this.state.errors = [];
     e.preventDefault();
     for(let key of Object.keys(this.state.fields)) {
       if(this.state.fields[key].validateField()) {
