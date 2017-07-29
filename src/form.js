@@ -51,41 +51,53 @@ export default class Form extends React.Component {
     return this.state.fields[field].getValue();
   }
 
+  getFieldMarkup = (field, index) => {
+    switch(field.type) {
+      case 'text':
+        return <Text key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'password':
+        return <Password key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'email':
+        return <Email key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'select':
+        return <Select key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'radio':
+        return <Radio key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'checkbox':
+        return <Checkbox key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'bool':
+        return <TrueFalse key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'textarea':
+        return <Textarea key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'hidden':
+        return <Hidden key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />
+        break;
+      case 'info':
+        return <Info key={index} attributes={field} />
+        break;
+      case 'dynamic':
+        var dynamic = this.props.dynamics[field.key];
+        var fields = [];
+        dynamic.forEach((f, i) => {
+          fields.push(this.getFieldMarkup(f, (i+100)));
+        });
+        return fields;
+        break;
+    }
+  }
+
   render() {
     let fields = [];
     this.props.fields.forEach((field, index) => {
-      switch(field.type) {
-        case 'text':
-          fields.push(<Text key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'password':
-          fields.push(<Password key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'email':
-          fields.push(<Email key={index} attributes={field} labels={this.props.showlabels} getFieldValue={this.getFieldValue} realtimeval={this.props.realtimeval} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'select':
-          fields.push(<Select key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'radio':
-          fields.push(<Radio key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'checkbox':
-          fields.push(<Checkbox key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'bool':
-          fields.push(<TrueFalse key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'textarea':
-          fields.push(<Textarea key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'hidden':
-          fields.push(<Hidden key={index} attributes={field} ref={(el) => { this.state.fields[field.name] = el; }} />)
-          break;
-        case 'info':
-          fields.push(<Info key={index} attributes={field} />)
-          break;
-      }
+      fields.push(this.getFieldMarkup(field, index));
     });
     return (
       <form name={this.props.name} method="POST" action="" onSubmit={this.submit}>
